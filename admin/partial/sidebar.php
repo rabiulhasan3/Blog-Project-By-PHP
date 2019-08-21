@@ -26,19 +26,32 @@
             </div>
             <!-- #User Info -->
             <!-- Menu -->
+            <?php $pageName = basename($_SERVER['PHP_SELF']); ?>
             <div class="menu">
                 <ul class="list">
                     <li class="header">MAIN NAVIGATION</li>
-                    <li class="active">
-                        <a href="index.html">
+                    <li class="<?php if($pageName == 'index.php'){  echo 'active';} ?>">
+                        <a href="index.php">
                             <i class="material-icons">home</i>
                             <span>Dashboard</span>
                         </a>
                     </li>
-                    <li>
+                    <li class="<?php if($pageName == 'category.php'){  echo 'active';} ?>">
                         <a href="category.php">
-                            <i class="material-icons">text_fields</i>
+                            <i class="material-icons">format_align_justify</i>
                             <span>Category</span>
+                        </a>
+                    </li>
+                    <li class="<?php if($pageName == 'tag.php'){  echo 'active';} ?>">
+                        <a href="tag.php">
+                            <i class="material-icons">format_align_right</i>
+                            <span>Tag</span>
+                        </a>
+                    </li>
+                    <li class="<?php if($pageName == 'post.php'){  echo 'active';} ?>">
+                        <a href="post.php">
+                            <i class="material-icons">insert_drive_file</i>
+                            <span>Post</span>
                         </a>
                     </li>
                    

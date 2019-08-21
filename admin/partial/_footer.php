@@ -24,6 +24,12 @@
     <script src="assets/plugins/jquery-datatable/extensions/export/buttons.html5.min.js"></script>
     <script src="assets/plugins/jquery-datatable/extensions/export/buttons.print.min.js"></script>
 
+     <!-- Select Plugin Js -->
+     <script src="assets/plugins/bootstrap-select/js/bootstrap-select.js"></script>
+
+     <!-- Multi Select Plugin Js -->
+     <script src="assets/plugins/multi-select/js/jquery.multi-select.js"></script>
+
     <!-- Jquery CountTo Plugin Js -->
     <script src="assets/plugins/jquery-countto/jquery.countTo.js"></script>
 
@@ -41,6 +47,7 @@
     <!-- Custom Js -->
     <script src="assets/js/admin.js"></script>
     <script src="assets/js/pages/tables/jquery-datatable.js"></script>
+    <script src="assets/js/pages/forms/advanced-form-elements.js"></script>
     <script src="assets/js/pages/index.js"></script>
     
 

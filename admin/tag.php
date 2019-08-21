@@ -4,7 +4,7 @@
         <div class="container-fluid">
             <div class="block-header">
                 <h2>
-                    CATEGORY LISTS
+                    TAGAS LISTS
                     <small>Taken from <a href="https://datatables.net/" target="_blank">datatables.net</a></small>
                 </h2>
             </div>
@@ -14,12 +14,12 @@
                     <div class="card">
                         <div class="header">
                             <h2>
-                                EXPORTABLE TABLE
+                                ALL TAG LISTS TABLE
                             </h2>
                             <ul class="header-dropdown m-r--5">
                                 <li class="dropdown">
-                                <button type="button" class="btn btn-default waves-effect" data-toggle="modal" data-target="#addCategory">
-                                <i class="material-icons">add</i>ADD CATEGORY
+                                <button type="button" class="btn btn-default waves-effect" data-toggle="modal" data-target="#addTag">
+                                <i class="material-icons">add</i>ADD TAG
                                 </button>
                                 </li>
                             </ul>
@@ -38,7 +38,7 @@
                                     </thead>
                                     <tbody>
                                         <?php 
-                                            $sql = "SELECT * FROM categories";
+                                            $sql = "SELECT * FROM tags";
                                             $query = mysqli_query($conn,$sql);
                                             $result = mysqli_num_rows($query);
                                             if($result > 0){
@@ -47,16 +47,16 @@
                                                     ?>
                                                         <tr>
                                                             <td><?php echo ++$i; ?></td>
-                                                            <td class="text-capitalize"><?php echo $row['name'] ?></td>
+                                                            <td><?php echo $row['name'] ?></td>
                                                             <td><?php echo $row['slug'] ?></td>
                                                             <td class="text-center">
                                                                 <a href="#editCategory<?php echo $row['id']; ?>" data-toggle="modal" class="btn btn-default waves-effect">
                                                                     <i class="material-icons">create</i>
                                                                 </a>
-                                                                <a href="#delCategory<?php echo $row['id']; ?>" data-toggle="modal" class="btn btn-default waves-effect">
+                                                                <a href="#delTag<?php echo $row['id']; ?>" data-toggle="modal" class="btn btn-default waves-effect">
                                                                     <i class="material-icons">delete_sweep</i>
                                                                 </a>
-                                                                <?php include 'category/edit-delete.php';  ?>
+                                                                <?php include 'tag/edit-delete.php';  ?>
                                                             </td>
                                                         </tr>
                                                         <?php
@@ -74,20 +74,20 @@
             </div>
             <!-- #END# Exportable Table -->
 
-            <div class="modal fade" id="addCategory" tabindex="-1" role="dialog">
+            <div class="modal fade" id="addTag" tabindex="-1" role="dialog">
                 <div class="modal-dialog modal-sm" role="document">
-                    <form action="category/add-category.php" method="post">
-                    <div class="card">
-                        <div class="header">
-                            <h4 class="modal-title" id="smallModalLabel">ADD CATEGORY</h4>
+                    <form action="tag/add-tag.php" method="post">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h4 class="modal-title" id="smallModalLabel">ADD TAG</h4>
                         </div>
-                        <div class="body">
+                        <div class="modal-body">
                         <div class="input-group">
                             <span class="input-group-addon">
                                 <i class="material-icons">content_paste</i>
                             </span>
                             <div class="form-line">
-                                <input type="text" autocomplete="off" class="form-control" name="name" placeholder="Category Name" required autofocus>
+                                <input type="text" autocomplete="off" class="form-control" name="name" placeholder="Tag Name" required autofocus>
                             </div>
                         </div>
                         </div>
