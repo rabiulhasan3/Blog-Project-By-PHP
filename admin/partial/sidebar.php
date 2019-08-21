@@ -36,9 +36,9 @@
                         </a>
                     </li>
                     <li>
-                        <a href="pages/typography.html">
+                        <a href="category.php">
                             <i class="material-icons">text_fields</i>
-                            <span>Post</span>
+                            <span>Category</span>
                         </a>
                     </li>
                    
