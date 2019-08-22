@@ -24,6 +24,9 @@
     <!-- Multi Select Css -->
     <link href="assets/plugins/multi-select/css/multi-select.css" rel="stylesheet">
 
+     <!-- Bootstrap Select Css -->
+     <link href="assets/plugins/bootstrap-select/css/bootstrap-select.css" rel="stylesheet" />
+
     <!-- JQuery DataTable Css -->
     <link href="assets/plugins/jquery-datatable/skin/bootstrap/css/dataTables.bootstrap.css" rel="stylesheet">
 

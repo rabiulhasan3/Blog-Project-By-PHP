@@ -1,4 +1,13 @@
-<?php include '../db/database_connection.php'; ?>
+<?php
+     // Session Start
+     session_start();
+     // Authentication
+     if(!isset($_SESSION['email'])){
+         header('location:sign-in.php');
+         exit;
+     }
+    include '../db/database_connection.php';
+?>
 <?php include 'partial/_header.php' ?>
     <section class="content">
         <div class="container-fluid">

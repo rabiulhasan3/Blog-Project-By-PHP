@@ -22,7 +22,7 @@
                         </div>
                         </div>
                         <div class="modal-footer">
-                            <input type="submit" class="btn btn-primary waves-effect" value="Save" name="submit">
+                            <input type="submit" class="btn btn-primary waves-effect" value="UPDATE" name="submit">
                             <button type="button" class="btn btn-danger waves-effect" data-dismiss="modal">CLOSE</button>
                         </div>
                     </div>
@@ -48,8 +48,8 @@
             </div> 
             </div>
             <div class="modal-footer">
-                <a href="category/delete-category.php?id=<?php echo $row['id']; ?>" class="btn btn-success">Yes</a>
-                <button type="button" class="btn btn-danger waves-effect" data-dismiss="modal">No</button>
+                <a href="category/delete-category.php?id=<?php echo $row['id']; ?>" class="btn btn-success">YES</a>
+                <button type="button" class="btn btn-danger waves-effect" data-dismiss="modal">NO</button>
             </div>
         </div>
         </form>

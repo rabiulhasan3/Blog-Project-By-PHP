@@ -1,4 +1,13 @@
-<?php include '../db/database_connection.php'; ?>
+<?php 
+    // Session Start
+    session_start();
+    // Authentication
+    if(!isset($_SESSION['email'])){
+        header('location:sign-in.php');
+        exit;
+    }
+    include '../db/database_connection.php';
+?>
 <?php include 'partial/_header.php' ?>
     <section class="content">
         <div class="container-fluid">
@@ -51,43 +60,91 @@
 
     <!-- Add Post Modal -->
     <div class="modal fade" id="addPost" tabindex="-1" role="dialog">
-        <div class="modal-dialog" role="document">
-            <form action="tag/add-tag.php" method="post">
-            <div class="card">
-                <div class="header">
-                    <h4 class="modal-title" id="smallModalLabel">ADD NEW POST</h4>
-                </div>
-                <div class="modal-body">
-                <div class="row clearfix">
-                                <div class="col-sm-12">
-                                    <div class="form-group form-float">
-                                        <div class="form-line">
-                                        <p>
-                                        <b>Title</b>
-                                    </p>
-                                            <input type="text" name="title" class="form-control">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-sm-12">
-                                    <p>
-                                        <b>Multiple Select</b>
-                                    </p>
-                                    <select class="form-control">
-                                        <option>Mustard</option>
-                                        <option>Ketchup</option>
-                                        <option>Relish</option>
-                                    </select>
-                                </div>
-                            </div>
-                </div>
-                <div class="modal-footer">
-                    <input type="submit" class="btn btn-primary waves-effect" value="Save" name="submit">
-                    <button type="button" class="btn btn-danger waves-effect" data-dismiss="modal">CLOSE</button>
-                </div>
+   <div class="modal-dialog" role="document">
+      <form action="tag/add-tag.php" method="post">
+         <div class="card">
+            <div class="header">
+               <h4 class="modal-title" id="smallModalLabel">ADD NEW POST</h4>
             </div>
-            </form>
-        </div>
-    </div>
+            <div class="modal-body">
+               <div class="row clearfix">
+                  <div class="col-sm-12">
+                     <div class="form-group form-float">
+                        <div class="form-line">
+                           <p>
+                              <b>Title</b>
+                           </p>
+                           <input type="text" name="title" class="form-control">
+                        </div>
+                     </div>
+                  </div>
+                  <div class="col-sm-12">
+                     <div class="form-group">
+                        <p>
+                           <b>Select Categories</b>
+                        </p>
+                        <select names="categories" class="form-control show-tick" multiple data-live-search="true">
+                           <?php
+                              $sqlCategories = "SELECT * FROM categories";
+                              $query = mysqli_query($conn,$sqlCategories);
+                              $result = mysqli_num_rows($query);
+                              if($result > 0){
+                                  while($row=mysqli_fetch_assoc($query)){
+                                      ?>
+                           <option value="<?php echo $row['id'] ?>"><?php echo $row['name'] ?></option>
+                           <?php
+                              }
+                              }
+                              ?>
+                        </select>
+                     </div>
+                  </div>
+                  <div class="col-sm-12">
+                     <div class="form-group">
+                        <p>
+                           <b>Select Tags</b>
+                        </p>
+                        <select names="tags" class="form-control show-tick" multiple data-live-search="true">
+                           <?php
+                              $sqlTags = "SELECT * FROM tags";
+                              $query = mysqli_query($conn,$sqlTags);
+                              $result = mysqli_num_rows($query);
+                              if($result > 0){
+                                  while($row=mysqli_fetch_assoc($query)){
+                                      ?>
+                           <option value="<?php echo $row['id'] ?>"><?php echo $row['name'] ?></option>
+                           <?php
+                              }
+                              }
+                              ?>
+                        </select>
+                     </div>
+                     <div class="col-md-12">
+                        <div class="form-group">
+                           <textarea id="ckeditor">
+                           </textarea>
+                        </div>
+                     </div>
+                     <div class="col-md-12">
+                        <div class="form-group">
+                           <p>
+                              <b>Featured Image</b>
+                           </p>
+                           <div class="form-line">
+                              <input type="file" class="form-control" name="avatar" id="avatar" >
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+            <div class="modal-footer">
+               <input type="submit" class="btn btn-primary waves-effect" value="Save" name="submit">
+               <button type="button" class="btn btn-danger waves-effect" data-dismiss="modal">CLOSE</button>
+            </div>
+         </div>
+      </form>
+   </div>
+</div>
 
 <?php include 'partial/_footer.php'; ?>
