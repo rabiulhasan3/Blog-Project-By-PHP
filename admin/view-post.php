@@ -12,6 +12,18 @@
 <section class="content">
 <div class="container-fluid">
 
+<?php 
+    $id = $_GET['post_id'];
+    $sql = "SELECT * FROM posts WHERE id='$id'";
+    $query = mysqli_query($conn,$sql);
+    while($row = mysqli_fetch_assoc($query)){
+?>
+
+  <!-- Vertical Layout | With Floating Label -->
+        <a href="post.php" class="btn btn-danger waves-effect">BACK</a>
+        <br>
+        <br>
+
 
     <!-- Vertical Layout | With Floating Label -->
     <div class="row clearfix">
@@ -19,12 +31,12 @@
             <div class="card">
                 <div class="header">
                     <h2>
-                       
-                        <small>Posted By <strong> <a href=""></a></strong> on </small>
+                        <?php echo $row['title']; ?>
+                        <small>Posted By <strong> <?php echo $row['author_name']; ?></strong> on <?php echo $row['post_date'] ?></small>
                     </h2>
                 </div>
                 <div class="body">
-                   
+                   <?php echo $row['body']; ?>
                 </div>
             </div>
         </div>
@@ -36,8 +48,15 @@
                     </h2>
                 </div>
                 <div class="body">
-                <span class="label bg-green">Hello</span>
-                        <span class="label bg-green">Hello</span> 
+                    <?php 
+                        $csql = "SELECT categories.name FROM category_post,categories WHERE category_post.category_id=categories.id AND post_id='".$row['id']."'";
+                        $cquery = mysqli_query($conn,$csql);
+                        while($crow = mysqli_fetch_assoc($cquery)){
+                          ?>
+                            <span class="label bg-blue"><?php echo $crow['name']; ?></span>
+                          <?php
+                        }
+                    ?>
                 </div>
             </div>
             <div class="card">
@@ -47,10 +66,15 @@
                     </h2>
                 </div>
                 <div class="body">
-                    
-                        <span class="label bg-green">Hello</span>
-                        <span class="label bg-green">Hello</span>
-                    
+                   <?php 
+                        $tsql = "SELECT tags.name FROM post_tag,tags WHERE post_tag.tag_id=tags.id AND post_id='".$row['id']."'";
+                        $tquery = mysqli_query($conn,$tsql);
+                        while($trow = mysqli_fetch_assoc($tquery)){
+                          ?>
+                            <span class="label bg-green"><?php echo $trow['name']; ?></span>
+                          <?php
+                        }
+                    ?>
                 </div>
             </div>
             <div class="card">
@@ -60,11 +84,15 @@
                     </h2>
                 </div>
                 <div class="body">
-                   <img class="img-responsive thumbnail" src="" alt="">               
+                   <img class="img-responsive thumbnail" src="assets/images/posts/<?php echo $row['image'] ?>" alt="">               
                 </div>
             </div>
         </div>
     </div>
+
+<?php 
+    }
+ ?>
 
 
 </div>

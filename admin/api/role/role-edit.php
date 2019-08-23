@@ -1,5 +1,5 @@
 <?php
-	include '../../db/database_connection.php';
+	include '../../../db/database_connection.php';
  
 	$id=$_GET['id'];
  
@@ -33,11 +33,11 @@
             return $text;
             }
         $slug = slug($name);
-        $query = mysqli_query($conn,"update tags set name='$name', slug='$slug' where id='$id'");
+        $query = mysqli_query($conn,"update roles set name='$name', slug='$slug' where id='$id'");
         if($query){
-            header('location:../tag.php');
+            header('location:../../role.php');
         }else{
-            die("tag update failed").mysqli_error();
+            die("role update failed").mysqli_error();
         }
 
     }

@@ -63,6 +63,20 @@
     <!-- Demo Js -->
     <script src="assets/js/demo.js"></script>
 
+    <script>
+        $(function () {
+    //CKEditor
+    CKEDITOR.replace('ckeditor');
+    CKEDITOR.config.height = 300;
+
+      //CKEditor
+    CKEDITOR.replace('editCK');
+    CKEDITOR.config.height = 300;
+
+
+});
+    </script>
+
 
 </body>
 

@@ -1,0 +1,47 @@
+<?php
+    include '../../../db/database_connection.php';
+    if(isset($_POST['submit'])){
+        if(isset($_POST['name'])){
+            $name = mysqli_real_escape_string($conn,$_POST['name']);
+            // create slug
+            function slug($text)
+                {
+                // replace non letter or digits by -
+                $text = preg_replace('~[^\pL\d]+~u', '-', $text);
+
+                // transliterate
+                $text = iconv('utf-8', 'us-ascii//TRANSLIT', $text);
+
+                // remove unwanted characters
+                $text = preg_replace('~[^-\w]+~', '', $text);
+
+                // trim
+                $text = trim($text, '-');
+
+                // remove duplicate -
+                $text = preg_replace('~-+~', '-', $text);
+
+                // lowercase
+                $text = strtolower($text);
+
+                if (empty($text)) {
+                    return 'n-a';
+                }
+
+                return $text;
+                }
+            
+            $slug = slug($name);
+            
+            $sql = "INSERT INTO roles (name,slug) VALUES ('$name','$slug')";
+			$query = mysqli_query($conn,$sql);
+            if($query){	
+			    header('location:../../role.php');
+            }else{
+                die("role insert failed.").mysqli_error();
+            }
+        }else{
+
+        }
+    }
+?>

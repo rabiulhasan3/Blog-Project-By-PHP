@@ -5,7 +5,7 @@
                     $edit=mysqli_query($conn,"select * from tags where id='".$row['id']."'");
                     $erow=mysqli_fetch_array($edit);
                 ?>
-                    <form action="tag/tag-edit.php?id=<?php echo $erow['id']; ?>" method="post">
+                    <form action="api/tag/tag-edit.php?id=<?php echo $erow['id']; ?>" method="post">
                     <div class="card">
                         <div class="header">
                             <h4 class="modal-title" id="smallModalLabel">EDIT TAG</h4>
@@ -29,6 +29,8 @@
                     </form>
                 </div>
             </div>
+
+            
 <!-- Delete Category -->
 <div class="modal fade"  id="delTag<?php echo $row['id']; ?>" tabindex="-1" role="dialog">
     <div class="modal-dialog modal-sm" role="document">
@@ -48,7 +50,7 @@
             </div> 
             </div>
             <div class="modal-footer">
-                <a href="tag/delete-tag.php?id=<?php echo $row['id']; ?>" class="btn btn-success">YES</a>
+                <a href="api/tag/delete-tag.php?id=<?php echo $row['id']; ?>" class="btn btn-success">YES</a>
                 <button type="button" class="btn btn-danger waves-effect" data-dismiss="modal">NO</button>
             </div>
         </div>

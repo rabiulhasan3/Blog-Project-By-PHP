@@ -5,7 +5,7 @@
                     $edit=mysqli_query($conn,"select * from categories where id='".$row['id']."'");
                     $erow=mysqli_fetch_array($edit);
                 ?>
-                    <form action="category/category-edit.php?id=<?php echo $erow['id']; ?>" method="post">
+                    <form action="api/category/category-edit.php?id=<?php echo $erow['id']; ?>" method="post">
                     <div class="card">
                         <div class="header">
                             <h4 class="modal-title" id="smallModalLabel">EDIT CATEGORY</h4>
@@ -48,7 +48,7 @@
             </div> 
             </div>
             <div class="modal-footer">
-                <a href="category/delete-category.php?id=<?php echo $row['id']; ?>" class="btn btn-success">YES</a>
+                <a href="api/category/delete-category.php?id=<?php echo $row['id']; ?>" class="btn btn-success">YES</a>
                 <button type="button" class="btn btn-danger waves-effect" data-dismiss="modal">NO</button>
             </div>
         </div>

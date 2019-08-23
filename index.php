@@ -1,3 +1,4 @@
+
 <?php include 'partial/_header.php'; ?>
 
 <body id="top">
@@ -23,84 +24,29 @@
             <div class="col-full">
 
                 <div class="featured-slider featured" data-aos="zoom-in">
+                   <?php 
+                        $sql = "SELECT * FROM banner";
+                        $query = mysqli_query($conn,$sql);
+                        while($row = mysqli_fetch_assoc($query)){
+                            ?>
+                            <div class="featured__slide">
+                                <div class="entry">
 
-                    <div class="featured__slide">
-                        <div class="entry">
+                                    <div class="entry__background" style="background-image:url('admin/assets/images/banner/<?php echo $row['image'] ?>');"></div>
+                                    
+                                    <div class="entry__content">
 
-                            <div class="entry__background" style="background-image:url('assets/images/thumbs/featured/featured-guitarman.jpg');"></div>
-                            
-                            <div class="entry__content">
-                                <span class="entry__category"><a href="#0">Music</a></span>
+                                        <h1><a href="#0" title=""><?php echo $row['title'] ?></a></h1>
 
-                                <h1><a href="#0" title="">What Your Music Preference Says About You and Your Personality.</a></h1>
+                                    </div> <!-- end entry__content -->
+                                    
+                                </div> <!-- end entry -->
+                            </div> <!-- end featured__slide -->   
+                            <?php
+                        }
 
-                                <div class="entry__info">
-                                    <a href="#0" class="entry__profile-pic">
-                                        <img class="avatar" src="images/avatars/user-05.jpg" alt="">
-                                    </a>
-                                    <ul class="entry__meta">
-                                        <li><a href="#0">Jonathan Smith</a></li>
-                                        <li>June 02, 2018</li>
-                                    </ul>
-                                </div>
-                            </div> <!-- end entry__content -->
-                            
-                        </div> <!-- end entry -->
-                    </div> <!-- end featured__slide -->
+                    ?>
 
-                    <div class="featured__slide">
-
-                        <div class="entry">
-
-                            <div class="entry__background" style="background-image:url('assets/images/thumbs/featured/featured-watch.jpg');"></div>
-                            
-                            <div class="entry__content">
-                                <span class="entry__category"><a href="#0">Management</a></span>
-
-                                <h1><a href="#0" title="">The Pomodoro Technique Really Works.</a></h1>
-
-                                <div class="entry__info">
-                                    <a href="#0" class="entry__profile-pic">
-                                        <img class="avatar" src="images/avatars/user-03.jpg" alt="">
-                                    </a>
-
-                                    <ul class="entry__meta">
-                                        <li><a href="#0">John Doe</a></li>
-                                        <li>June 13, 2018</li>
-                                    </ul>
-                                </div>
-                            </div> <!-- end entry__content -->
-                            
-                        </div> <!-- end entry -->
-
-                    </div> <!-- end featured__slide -->
-
-                    <div class="featured__slide">
-
-                        <div class="entry">
-
-                            <div class="entry__background" style="background-image:url('assets/images/thumbs/featured/featured-beetle.jpg');"></div>
-
-                            <div class="entry__content">
-                                <span class="entry__category"><a href="#0">LifeStyle</a></span>
-
-                                <h1><a href="#0" title="">The difference between Classics, Vintage & Antique Cars.</a></h1>
-
-                                <div class="entry__info">
-                                    <a href="#0" class="entry__profile-pic">
-                                        <img class="avatar" src="images/avatars/user-03.jpg" alt="">
-                                    </a>
-
-                                    <ul class="entry__meta">
-                                        <li><a href="#0">John Doe</a></li>
-                                        <li>June 12, 2018</li>
-                                    </ul>
-                                </div>
-                            </div> <!-- end entry__content -->
-
-                        </div> <!-- end entry -->
-
-                    </div> <!-- end featured__slide -->
                     
                 </div> <!-- end featured -->
 
@@ -116,305 +62,54 @@
         <div class="row entries-wrap wide">
             <div class="entries">
 
-                <article class="col-block">
-                    
-                    <div class="item-entry" data-aos="zoom-in">
-                        <div class="item-entry__thumb">
-                            <a href="single-standard.html" class="item-entry__thumb-link">
-                                <img src="assets/images/thumbs/post/lamp-400.jpg" 
-                                     srcset="assets/images/thumbs/post/lamp-400.jpg 1x, images/thumbs/post/lamp-800.jpg 2x" alt="">
-                            </a>
-                        </div>
+            <?php 
+                $asql = "SELECT * FROM posts WHERE status=1 AND is_approved='approved' ORDER BY id DESC";
+                $aquery = mysqli_query($conn,$asql);
+                while($arow = mysqli_fetch_assoc($aquery)){
+                    ?>
+                    <article class="col-block">
+                        
+                        <div class="item-entry" data-aos="zoom-in">
+                            <div class="item-entry__thumb">
+                                <a href="single.php?post_id=<?php echo  $arow['id']; ?>" class="item-entry__thumb-link">
+                                    <img src="admin/assets/images/posts/<?php echo $arow['image'] ?>" alt="">
+                                </a>
+                            </div>
+            
+                            <div class="item-entry__text">    
+                                <div class="item-entry__cat">
+                                    <?php 
+                                        $acsql = "SELECT categories.name FROM category_post,categories WHERE category_post.category_id=categories.id AND post_id='".$arow['id']."'";
+                                        $acquery = mysqli_query($conn,$acsql);
+                                        while($acrow = mysqli_fetch_assoc($acquery)){
+                                          ?>
+                                          <a href="category.html"><?php echo $acrow['name']," " ?></a> 
+                                          <?php
+                                        }
+                                    ?>
+                                    
+                                </div>
         
-                        <div class="item-entry__text">    
-                            <div class="item-entry__cat">
-                                <a href="category.html">Design</a> 
+                                <h1 class="item-entry__title"><a href="single.php?post_id=<?php echo  $arow['id']; ?>"><?php echo $arow['title'] ?></a></h1>
+                                    
+                                <div class="item-entry__date">
+                                    <a href="single-standard.html">
+                                        <?php
+                                           $post_date =  strtotime($arow['post_date']); 
+                                            echo date('F d,Y',$post_date);
+                                         ?>
+                                            
+                                    </a>
+                                </div>
                             </div>
-    
-                            <h1 class="item-entry__title"><a href="single-standard.html">3 Benefits of Minimalism In Interior Design.</a></h1>
-                                
-                            <div class="item-entry__date">
-                                <a href="single-standard.html">June 15, 2018</a>
-                            </div>
-                        </div>
-                    </div> <!-- item-entry -->
+                        </div> <!-- item-entry -->
 
-                </article> <!-- end article -->
+                    </article> <!-- end article -->
+                    <?php
+                }
+            ?>
 
-                <article class="col-block">
-                    
-                    <div class="item-entry" data-aos="zoom-in">
-                        <div class="item-entry__thumb">
-                            <a href="single-standard.html" class="item-entry__thumb-link">
-                                <img src="assets/images/thumbs/post/tulips-400.jpg" 
-                                     srcset="images/thumbs/post/tulips-400.jpg 1x, images/thumbs/post/tulips-800.jpg 2x" alt="">
-                            </a>
-                        </div>
-        
-                        <div class="item-entry__text">
-                            <div class="item-entry__cat">
-                                <a href="category.html">Health</a>
-                            </div>
-    
-                            <h1 class="item-entry__title"><a href="single-standard.html">10 Interesting Facts About Caffeine.</a></h1>
-                                
-                            <div class="item-entry__date">
-                                <a href="single-standard.html">June 14, 2018</a>
-                            </div>
-                        </div>
-                    </div> <!-- item-entry -->
-    
-                </article> <!-- end article -->
 
-                <article class="col-block">
-                    
-                    <div class="item-entry" data-aos="zoom-in">
-                        <div class="item-entry__thumb">
-                            <a href="single-standard.html" class="item-entry__thumb-link">
-                                <img src="images/thumbs/post/music-400.jpg" 
-                                     srcset="images/thumbs/post/music-400.jpg 1x, images/thumbs/post/music-800.jpg 2x" alt="">
-                            </a>
-                        </div>
-        
-                        <div class="item-entry__text">
-                            <div class="item-entry__cat">
-                                <a href="category.html">Health</a>
-                            </div>
-    
-                            <h1 class="item-entry__title"><a href="single-standard.html">The Power of Music to Reduce Stress.</a></h1>
-                                
-                            <div class="item-entry__date">
-                                <a href="single-standard.html">June 14, 2018</a>
-                            </div>
-                        </div>
-                    </div> <!-- item-entry -->
-    
-                </article> <!-- end article -->
-
-                <article class="col-block">
-                
-                    <div class="item-entry" data-aos="zoom-in">
-                        <div class="item-entry__thumb">
-                            <a href="single-standard.html" class="item-entry__thumb-link">
-                                <img src="images/thumbs/post/watch-400.jpg" 
-                                     srcset="images/thumbs/post/watch-400.jpg 1x, images/thumbs/post/watch-800.jpg 2x" alt="">
-                            </a>
-                        </div>
-        
-                        <div class="item-entry__text">
-                            <div class="item-entry__cat">
-                                <a href="category.html">Management</a>
-                            </div>
-    
-                            <h1 class="item-entry__title"><a href="single-standard.html">The Pomodoro Technique Really Works.</a></h1>
-                                
-                            <div class="item-entry__date">
-                                <a href="single-standard.html">June 12, 2018</a>
-                            </div>
-                        </div>
-                    </div> <!-- item-entry -->
-
-                </article> <!-- end article -->
-
-                <article class="col-block">
-                
-                    <div class="item-entry" data-aos="zoom-in">
-                        <div class="item-entry__thumb">
-                            <a href="single-standard.html" class="item-entry__thumb-link">
-                                <img src="images/thumbs/post/wheel-400.jpg" 
-                                     srcset="images/thumbs/post/wheel-400.jpg 1x, images/thumbs/post/wheel-800.jpg 2x" alt="">
-                            </a>
-                        </div>
-        
-                        <div class="item-entry__text">
-                            <div class="item-entry__cat">
-                                <a href="category.html">Lifestyle</a>
-                            </div>
-    
-                            <h1 class="item-entry__title"><a href="single-standard.html">Visiting Theme Parks Improves Your Health.</a></h1>
-                                
-                            <div class="item-entry__date">
-                                <a href="single-standard.html">June 12, 2017</a>
-                            </div>
-                        </div>
-                    </div> <!-- item-entry -->
-    
-                </article> <!-- end article -->
-
-                <article class="col-block">
-                
-                    <div class="item-entry" data-aos="zoom-in">
-                        <div class="item-entry__thumb">
-                            <a href="single-standard.html" class="item-entry__thumb-link">
-                                <img src="images/thumbs/post/guitarist-400.jpg" 
-                                     srcset="images/thumbs/post/guitarist-400.jpg 1x, images/thumbs/post/guitarist-800.jpg 2x" alt="">
-                            </a>
-                        </div>
-        
-                        <div class="item-entry__text">
-                            <div class="item-entry__cat">
-                                <a href="category.html">Music</a>
-                            </div>
-    
-                            <h1 class="item-entry__title"><a href="single-standard.html">What Your Music Preference Says About You and Your Personality.</a></h1>
-                                
-                            <div class="item-entry__date">
-                                <a href="single-standard.html">June 02, 2018</a>
-                            </div>
-                        </div>
-                    </div> <!-- item-entry -->
-    
-                </article> <!-- end article -->
-
-                <article class="col-block">
-                
-                    <div class="item-entry" data-aos="zoom-in">
-                        <div class="item-entry__thumb">
-                            <a href="single-standard.html" class="item-entry__thumb-link">
-                                <img src="images/thumbs/post/jump-400.jpg" 
-                                     srcset="images/thumbs/post/jump-400.jpg 1x, images/thumbs/post/jump-800.jpg 2x" alt="">
-                            </a>
-                        </div>
-        
-                        <div class="item-entry__text">
-                            <div class="item-entry__cat">
-                                <a href="category.html">Relationships</a> 
-                            </div>
-    
-                            <h1 class="item-entry__title"><a href="single-standard.html">Create Meaningful Family Moments.</a></h1>
-                                
-                            <div class="item-entry__date">
-                                <a href="single-standard.html">June 02, 2018</a>
-                            </div>
-                        </div>
-                    </div> <!-- item-entry -->
-    
-                </article> <!-- end article -->
-
-                <article class="col-block">
-                
-                    <div class="item-entry" data-aos="zoom-in">
-                        <div class="item-entry__thumb">
-                            <a href="single-standard.html" class="item-entry__thumb-link">
-                                <img src="images/thumbs/post/flowers-400.jpg" 
-                                     srcset="images/thumbs/post/flowers-400.jpg 1x, images/thumbs/post/flowers-800.jpg 2x" alt="">
-                            </a>
-                        </div>
-        
-                        <div class="item-entry__text">
-                            <div class="item-entry__cat">
-                                <a href="category.html">Lifestyle</a>
-                            </div>
-    
-                            <h1 class="item-entry__title"><a href="single-standard.html">Gardening: The Secret to Happiness.</a></h1>
-                                
-                            <div class="item-entry__date">
-                                <a href="single-standard.html">June 01, 2018</a>
-                            </div>
-                        </div>
-                    </div> <!-- item-entry -->
-    
-                </article> <!-- end article -->
-
-                <article class="col-block">
-                
-                    <div class="item-entry" data-aos="zoom-in">
-                        <div class="item-entry__thumb">
-                            <a href="single-standard.html" class="item-entry__thumb-link">
-                                <img src="images/thumbs/post/woodcraft-400.jpg" 
-                                     srcset="images/thumbs/post/woodcraft-400.jpg 1x, images/thumbs/post/woodcraft-800.jpg 2x" alt="">
-                            </a>
-                        </div>
-        
-                        <div class="item-entry__text">
-                            <div class="item-entry__cat">
-                                <a href="category.html">Creativity</a>
-                            </div>
-    
-                            <h1 class="item-entry__title"><a href="single-standard.html">An Examination of Minimalistic Design.</a></h1>
-                                
-                            <div class="item-entry__date">
-                                <a href="single-standard.html">May 30, 2018</a>
-                            </div>
-                        </div>
-                    </div> <!-- item-entry -->
-    
-                </article> <!-- end article -->
-
-                <article class="col-block">
-                
-                    <div class="item-entry" data-aos="zoom-in">
-                        <div class="item-entry__thumb">
-                            <a href="single-standard.html" class="item-entry__thumb-link">
-                                <img src="images/thumbs/post/fuji-400.jpg" 
-                                     srcset="images/thumbs/post/fuji-400.jpg 1x, images/thumbs/post/fuji-800.jpg 2x" alt="">
-                            </a>
-                        </div>
-        
-                        <div class="item-entry__text">
-                            <div class="item-entry__cat">
-                                <a href="category.html">Creativity</a>
-                            </div>
-    
-                            <h1 class="item-entry__title"><a href="single-standard.html">What Skills Are Required For a Photographer?</a></h1>
-                                
-                            <div class="item-entry__date">
-                                <a href="single-standard.html">May 30, 2018</a>
-                            </div>
-                        </div>
-                    </div> <!-- item-entry -->
-    
-                </article> <!-- end article -->
-
-                <article class="col-block">
-                
-                    <div class="item-entry" data-aos="zoom-in">
-                        <div class="item-entry__thumb">
-                            <a href="single-standard.html" class="item-entry__thumb-link">
-                                <img src="images/thumbs/post/beetle-400.jpg" 
-                                     srcset="images/thumbs/post/beetle-400.jpg 1x, images/thumbs/post/beetle-800.jpg 2x" alt="">
-                            </a>
-                        </div>
-        
-                        <div class="item-entry__text">
-                            <div class="item-entry__cat">
-                                <a href="category.html">Lifestyle</a>
-                            </div>
-    
-                            <h1 class="item-entry__title"><a href="single-standard.html">Throwback To The Good Old Days.</a></h1>
-                                
-                            <div class="item-entry__date">
-                                <a href="single-standard.html">May 28, 2018</a>
-                            </div>
-                        </div>
-                    </div> <!-- item-entry -->
-    
-                </article> <!-- end article -->
-
-                <article class="col-block">
-                
-                    <div class="item-entry" data-aos="zoom-in">
-                        <div class="item-entry__thumb">
-                            <a href="single-standard.html" class="item-entry__thumb-link">
-                                <img src="images/thumbs/post/sydney-400.jpg" 
-                                     srcset="images/thumbs/post/sydney-400.jpg 1x, images/thumbs/post/sydney-800.jpg 2x" alt="">
-                            </a>
-                        </div>
-        
-                        <div class="item-entry__text">
-                            <div class="item-entry__cat">
-                                <a href="category.html">Travel</a> 
-                            </div>
-    
-                            <h1 class="item-entry__title"><a href="single-standard.html">Planning Your First Trip To Sydney.</a></h1>
-                                
-                            <div class="item-entry__date">
-                                <a href="single-standard.html">May 28, 2018</a>
-                            </div>
-                        </div>
-                    </div> <!-- item-entry -->
-    
-                </article> <!-- end article -->
 
             </div> <!-- end entries -->
         </div> <!-- end entries-wrap -->

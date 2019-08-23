@@ -59,13 +59,13 @@
                                                             <td><?php echo $row['name'] ?></td>
                                                             <td><?php echo $row['slug'] ?></td>
                                                             <td class="text-center">
-                                                                <a href="#editCategory<?php echo $row['id']; ?>" data-toggle="modal" class="btn btn-default waves-effect">
+                                                                <a href="#editTag<?php echo $row['id']; ?>" data-toggle="modal" class="btn btn-default waves-effect">
                                                                     <i class="material-icons">create</i>
                                                                 </a>
                                                                 <a href="#delTag<?php echo $row['id']; ?>" data-toggle="modal" class="btn btn-default waves-effect">
                                                                     <i class="material-icons">delete_sweep</i>
                                                                 </a>
-                                                                <?php include 'tag/edit-delete.php';  ?>
+                                                                <?php include 'api/tag/edit-delete.php';  ?>
                                                             </td>
                                                         </tr>
                                                         <?php
@@ -85,7 +85,7 @@
 
             <div class="modal fade" id="addTag" tabindex="-1" role="dialog">
                 <div class="modal-dialog modal-sm" role="document">
-                    <form action="tag/add-tag.php" method="post">
+                    <form action="api/tag/add-tag.php" method="post">
                     <div class="modal-content">
                         <div class="modal-header">
                             <h4 class="modal-title" id="smallModalLabel">ADD TAG</h4>

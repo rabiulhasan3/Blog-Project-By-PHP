@@ -1,5 +1,5 @@
 <?php
-    include '../../db/database_connection.php';
+    include '../../../db/database_connection.php';
     if(isset($_POST['submit'])){
         if(isset($_POST['name'])){
             $name = mysqli_real_escape_string($conn,$_POST['name']);
@@ -33,12 +33,12 @@
             
             $slug = slug($name);
             
-            $sql = "INSERT INTO tags (name,slug) VALUES ('$name','$slug')";
+            $sql = "INSERT INTO categories (name,slug) VALUES ('$name','$slug')";
 			$query = mysqli_query($conn,$sql);
             if($query){	
-			    header('location:../tag.php');
+			    header('location:../../category.php');
             }else{
-                die("tag insert failed.").mysqli_error();
+                die("category insert failed.").mysqli_error();
             }
         }else{
 

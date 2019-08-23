@@ -36,6 +36,12 @@
                             <span>Dashboard</span>
                         </a>
                     </li>
+                    <li class="<?php if($pageName == 'banner.php'){  echo 'active';} ?>">
+                        <a href="banner.php">
+                            <i class="material-icons">format_align_justify</i>
+                            <span>Banner</span>
+                        </a>
+                    </li>
                     <li class="<?php if($pageName == 'category.php'){  echo 'active';} ?>">
                         <a href="category.php">
                             <i class="material-icons">format_align_justify</i>
@@ -54,7 +60,18 @@
                             <span>Post</span>
                         </a>
                     </li>
-                   
+                    <li class="<?php if($pageName == 'role.php'){  echo 'active';} ?>">
+                        <a href="role.php">
+                            <i class="material-icons">insert_drive_file</i>
+                            <span>Role</span>
+                        </a>
+                    </li>
+                   <li class="<?php if($pageName == 'comment.php'){  echo 'active';} ?>">
+                        <a href="comments.php">
+                            <i class="material-icons">insert_drive_file</i>
+                            <span>Comment</span>
+                        </a>
+                    </li>
                 </ul>
             </div>
             <!-- #Menu -->
