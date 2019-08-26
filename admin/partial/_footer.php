@@ -16,6 +16,11 @@
     <!-- Ckeditor -->
     <script src="assets/plugins/ckeditor/ckeditor.js"></script>
 
+    
+    <!-- TinyMCE -->
+    <script src="../../plugins/tinymce/tinymce.js"></script>
+
+
     <!-- Multi Select Plugin Js -->
     <script src="assets/plugins/multi-select/js/jquery.multi-select.js"></script>
 
@@ -63,19 +68,6 @@
     <!-- Demo Js -->
     <script src="assets/js/demo.js"></script>
 
-    <script>
-        $(function () {
-    //CKEditor
-    CKEDITOR.replace('ckeditor');
-    CKEDITOR.config.height = 300;
-
-      //CKEditor
-    CKEDITOR.replace('editCK');
-    CKEDITOR.config.height = 300;
-
-
-});
-    </script>
 
 
 </body>

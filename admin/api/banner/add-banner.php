@@ -5,6 +5,7 @@
             $title = mysqli_real_escape_string($conn,$_POST['title']);
             $image        =  uniqid().$_FILES['image']['name'];
             $image_tmp    = $_FILES['image']['tmp_name'];
+            $date = date("d F,Y");
 
             if(!file_exists('../../assets/images/banner'))
             {
@@ -13,7 +14,7 @@
             
             move_uploaded_file($image_tmp, "../../assets/images/banner/$image");
             
-            $sql = "INSERT INTO banner (title,image) VALUES ('$title','$image')";
+            $sql = "INSERT INTO banner (title,image,date,status) VALUES ('$title','$image','$date',1)";
 			$query = mysqli_query($conn,$sql);
             if($query){	
 			    header('location:../../banner.php');

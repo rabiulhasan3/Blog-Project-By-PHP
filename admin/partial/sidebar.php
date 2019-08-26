@@ -1,4 +1,4 @@
-   <?php  session_start(); ?>
+
     <section>
         <!-- Left Sidebar -->
         <aside id="leftsidebar" class="sidebar">

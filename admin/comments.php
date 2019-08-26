@@ -53,7 +53,7 @@
                                         while($row=mysqli_fetch_assoc($query)){
                                           ?>
                                           <tr>
-                                            <td><?php echo $ ?></td>
+                                            
                                           </tr>
                                           <?php
                                         }
