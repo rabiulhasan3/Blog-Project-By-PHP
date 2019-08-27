@@ -41,6 +41,7 @@
                                             <th class="text-center">#</th>
                                             <th>Name</th>
                                             <th>Slug</th>
+                                            <th>Date</th>
                                             <th class="text-center">Action</th>
                                         </tr>
                                     </thead>
@@ -57,10 +58,27 @@
                                                             <td><?php echo ++$i; ?></td>
                                                             <td class="text-capitalize"><?php echo $row['name'] ?></td>
                                                             <td><?php echo $row['slug'] ?></td>
+                                                            <td><?php echo $row['date']; ?></td>
                                                             <td class="text-center">
                                                                 <a href="#editCategory<?php echo $row['id']; ?>" data-toggle="modal" class="btn btn-default waves-effect">
                                                                     <i class="material-icons">create</i>
                                                                 </a>
+                                                                <?php 
+                                                                    if($row['status'] == 0){
+                                                                        ?>
+                                                                            <a href="#inactiveCat<?php echo $row['id']; ?>" data-toggle="modal" class="btn btn-danger waves-effect">
+                                                                                <i class="material-icons">check_box_outline_blank</i>
+                                                                            </a>
+                                                                        <?php
+                                                                    }else{
+                                                                        ?>
+                                                                           <a href="#ActiveCat<?php echo $row['id']; ?>" data-toggle="modal" class="btn btn-success waves-effect">
+                                                                                <i class="material-icons">check_box</i>
+                                                                            </a>
+                                                                        <?php
+                                                                    }
+
+                                                                ?>
                                                                 <a href="#delCategory<?php echo $row['id']; ?>" data-toggle="modal" class="btn btn-default waves-effect">
                                                                     <i class="material-icons">delete_sweep</i>
                                                                 </a>
@@ -103,7 +121,7 @@
                             <input type="submit" class="btn btn-primary waves-effect" value="Save" name="submit">
                             <button type="button" class="btn btn-danger waves-effect" data-dismiss="modal">CLOSE</button>
                         </div>
-                    </div>
+                        </div>
                     </form>
                 </div>
             </div>

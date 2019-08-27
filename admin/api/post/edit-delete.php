@@ -121,6 +121,55 @@
                 <button type="button" class="btn btn-danger waves-effect" data-dismiss="modal">NO</button>
             </div>
         </div>
+        </div>
+        </form>
+    </div>
+</div>
+
+<!-- Inactive To Active -->
+<div class="modal fade"  id="inactivePost<?php echo $row['id']; ?>" tabindex="-1" role="dialog">
+   <div class="modal-dialog" role="document">
+      <form action="javascript.void();" method="post">
+         <div class="card">
+            <div class="header">
+               <h4 class="modal-title" >Active Post</h4>
+            </div>
+            <div class="body">
+               <div class="input-group">
+                  <div class="container-fluid">
+                     <h5 class="text-danger">Are you sure you want to Active this Post? </h5>
+                  </div>
+               </div>
+               <div class="modal-footer">
+                  <a href="api/post/active-post.php?id=<?php echo $row['id']; ?>" class="btn btn-success">YES</a>
+                  <button type="button" class="btn btn-danger waves-effect" data-dismiss="modal">NO</button>
+               </div>
+            </div>
+         </div>
+      </form>
+   </div>
+</div>
+<!-- Active To Imactove-->
+<div class="modal fade"  id="ActivePost<?php echo $row['id']; ?>" tabindex="-1" role="dialog">
+    <div class="modal-dialog" >
+        <form action="javascript.void();" method="post">
+        <div class="card">
+            <div class="header">
+                <h4 class="modal-title" >Deactive Post</h4>
+            </div>
+            <div class="body">
+            <div class="input-group">
+            
+            <div class="container-fluid">
+                <h5 class="text-danger">Are you sure you want to Deactive this Post? </h5> 
+            </div> 
+            </div>
+            <div class="modal-footer">
+                <a href="api/post/deactive-post.php?id=<?php echo $row['id']; ?>" class="btn btn-success">YES</a>
+                <button type="button" class="btn btn-danger waves-effect" data-dismiss="modal">NO</button>
+            </div>
+            </div>
+            </div>
         </form>
     </div>
 </div>

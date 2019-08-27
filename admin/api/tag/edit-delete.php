@@ -54,7 +54,61 @@
                 <button type="button" class="btn btn-danger waves-effect" data-dismiss="modal">NO</button>
             </div>
         </div>
+    </div>
         </form>
     </div>
 </div>
+
+
+
+<!-- Inactive To Active -->
+<div class="modal fade"  id="inactiveTag<?php echo $row['id']; ?>" tabindex="-1" role="dialog">
+   <div class="modal-dialog" role="document">
+      <form action="javascript.void();" method="post">
+         <div class="card">
+            <div class="header">
+               <h4 class="modal-title" >Active Tag</h4>
+            </div>
+            <div class="body">
+               <div class="input-group">
+                  <div class="container-fluid">
+                     <h5 class="text-danger">Are you sure you want to Active this Tag? </h5>
+                  </div>
+               </div>
+               <div class="modal-footer">
+                  <a href="api/tag/active-tag.php?id=<?php echo $row['id']; ?>" class="btn btn-success">YES</a>
+                  <button type="button" class="btn btn-danger waves-effect" data-dismiss="modal">NO</button>
+               </div>
+            </div>
+         </div>
+      </form>
+   </div>
+</div>
+<!-- Active To Imactove-->
+<div class="modal fade"  id="ActiveTag<?php echo $row['id']; ?>" tabindex="-1" role="dialog">
+    <div class="modal-dialog" >
+        <form action="javascript.void();" method="post">
+        <div class="card">
+            <div class="header">
+                <h4 class="modal-title" >Deactive Tag</h4>
+            </div>
+            <div class="body">
+            <div class="input-group">
+            
+            <div class="container-fluid">
+                <h5 class="text-danger">Are you sure you want to Deactive this Tag? </h5> 
+            </div> 
+            </div>
+            <div class="modal-footer">
+                <a href="api/tag/deactive-tag.php?id=<?php echo $row['id']; ?>" class="btn btn-success">YES</a>
+                <button type="button" class="btn btn-danger waves-effect" data-dismiss="modal">NO</button>
+            </div>
+            </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+
 

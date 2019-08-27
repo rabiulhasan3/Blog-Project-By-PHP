@@ -26,6 +26,7 @@
                             <button type="button" class="btn btn-danger waves-effect" data-dismiss="modal">CLOSE</button>
                         </div>
                     </div>
+                    </div>
                     </form>
                 </div>
             </div>
@@ -51,8 +52,61 @@
                 <a href="api/category/delete-category.php?id=<?php echo $row['id']; ?>" class="btn btn-success">YES</a>
                 <button type="button" class="btn btn-danger waves-effect" data-dismiss="modal">NO</button>
             </div>
+            </div>
         </div>
         </form>
     </div>
 </div>
+
+
+
+<!-- Inactive To Active -->
+<div class="modal fade"  id="inactiveCat<?php echo $row['id']; ?>" tabindex="-1" role="dialog">
+   <div class="modal-dialog" role="document">
+      <form action="javascript.void();" method="post">
+         <div class="card">
+            <div class="header">
+               <h4 class="modal-title" >Active Category</h4>
+            </div>
+            <div class="body">
+               <div class="input-group">
+                  <div class="container-fluid">
+                     <h5 class="text-danger">Are you sure you want to Active this Category? </h5>
+                  </div>
+               </div>
+               <div class="modal-footer">
+                  <a href="api/category/active-category.php?id=<?php echo $row['id']; ?>" class="btn btn-success">YES</a>
+                  <button type="button" class="btn btn-danger waves-effect" data-dismiss="modal">NO</button>
+               </div>
+            </div>
+         </div>
+      </form>
+   </div>
+</div>
+<!-- Active To Imactove-->
+<div class="modal fade"  id="ActiveCat<?php echo $row['id']; ?>" tabindex="-1" role="dialog">
+    <div class="modal-dialog" >
+        <form action="javascript.void();" method="post">
+        <div class="card">
+            <div class="header">
+                <h4 class="modal-title" >Deactive Category</h4>
+            </div>
+            <div class="body">
+            <div class="input-group">
+            
+            <div class="container-fluid">
+                <h5 class="text-danger">Are you sure you want to Deactive this Category? </h5> 
+            </div> 
+            </div>
+            <div class="modal-footer">
+                <a href="api/category/deactive-category.php?id=<?php echo $row['id']; ?>" class="btn btn-success">YES</a>
+                <button type="button" class="btn btn-danger waves-effect" data-dismiss="modal">NO</button>
+            </div>
+            </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+
 

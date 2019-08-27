@@ -62,6 +62,22 @@
                                                                 <a href="#editTag<?php echo $row['id']; ?>" data-toggle="modal" class="btn btn-default waves-effect">
                                                                     <i class="material-icons">create</i>
                                                                 </a>
+                                                                <?php 
+                                                                    if($row['status'] == 0){
+                                                                        ?>
+                                                                            <a href="#inactiveTag<?php echo $row['id']; ?>" data-toggle="modal" class="btn btn-danger waves-effect">
+                                                                                <i class="material-icons">check_box_outline_blank</i>
+                                                                            </a>
+                                                                        <?php
+                                                                    }else{
+                                                                        ?>
+                                                                           <a href="#ActiveTag<?php echo $row['id']; ?>" data-toggle="modal" class="btn btn-success waves-effect">
+                                                                                <i class="material-icons">check_box</i>
+                                                                            </a>
+                                                                        <?php
+                                                                    }
+
+                                                                ?>
                                                                 <a href="#delTag<?php echo $row['id']; ?>" data-toggle="modal" class="btn btn-default waves-effect">
                                                                     <i class="material-icons">delete_sweep</i>
                                                                 </a>

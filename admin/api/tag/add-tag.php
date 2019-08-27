@@ -3,6 +3,7 @@
     if(isset($_POST['submit'])){
         if(isset($_POST['name'])){
             $name = mysqli_real_escape_string($conn,$_POST['name']);
+            $date = date("d F, Y");
             // create slug
             function slug($text)
                 {
@@ -33,7 +34,7 @@
             
             $slug = slug($name);
             
-            $sql = "INSERT INTO tags (name,slug) VALUES ('$name','$slug')";
+            $sql = "INSERT INTO tags (name,slug,date,'status') VALUES ('$name','$slug','$date',1)";
 			$query = mysqli_query($conn,$sql);
             if($query){	
 			    header('location:../../tag.php');

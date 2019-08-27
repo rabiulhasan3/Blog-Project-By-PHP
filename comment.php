@@ -1,6 +1,6 @@
 <?php 
     include 'db/database_connection.php';
-    session_start();
+  
     if(isset($_POST['comment_submit'])){
         $post_id = $_GET['post_id'];
         $user_id = $_SESSION['id'];

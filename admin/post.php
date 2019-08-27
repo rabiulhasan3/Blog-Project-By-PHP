@@ -87,6 +87,22 @@
                                                    <a href="view-post.php?post_id=<?php echo $row['id']; ?>" data-toggle="modal" class="btn btn-default waves-effect">
                                                       <i class="material-icons">visibility</i>
                                                   </a>
+                                                  <?php 
+                                                      if($row['status'] == 0){
+                                                         ?>
+                                                               <a href="#inactivePost<?php echo $row['id']; ?>" data-toggle="modal" class="btn btn-danger waves-effect">
+                                                                  <i class="material-icons">check_box_outline_blank</i>
+                                                               </a>
+                                                         <?php
+                                                      }else{
+                                                         ?>
+                                                            <a href="#ActivePost<?php echo $row['id']; ?>" data-toggle="modal" class="btn btn-success waves-effect">
+                                                                  <i class="material-icons">check_box</i>
+                                                               </a>
+                                                         <?php
+                                                      }
+
+                                                   ?>
                                                   <a href="#delPost<?php echo $row['id']; ?>" data-toggle="modal" class="btn btn-default waves-effect">
                                                       <i class="material-icons">delete_sweep</i>
                                                   </a>
